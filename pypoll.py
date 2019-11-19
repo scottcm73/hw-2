@@ -1,0 +1,66 @@
+import csv
+
+line_count = 0
+total_votes =0
+counties= []
+candidates=[]
+vote_counter=[]
+this_index=0
+vote_int=0
+
+with open('election_data.csv', "r") as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+
+    header=next(csv_reader)
+    print(header)
+    
+    for row in csv_reader:
+        total_votes += 1
+
+        if row[1] not in counties:
+            # Makes a list of only distinct counties
+            counties.append(row[1])
+        
+
+        if row[2] not in candidates:
+            #Makes a list of only distinct candidates voted for
+            candidates.append(row[2]) 
+            vote_counter.append(1)
+        else:
+            # Gets the integer of the vote count of the pafticular 
+            # candidate with the same index as the current candidate
+
+            candidate_index=candidates.index(row[2])
+            vote_int=vote_counter[candidate_index]
+            vote_int=vote_int+1
+            # sets the vote_counter at that same candidate index equal to the vote_int
+            vote_counter[candidate_index]=vote_int
+        
+        
+
+            
+
+           
+     
+            
+
+
+print("Total votes: " + str(total_votes))
+print("Candidates voted for include: ")
+print(candidates)
+print("Counties include: ")
+print(counties)
+
+print(vote_counter)
+
+length=len(candidates)
+for i in range (0, length):
+    print(candidates[i]+ ": " + str(vote_counter[i])+ "  " + "{:.2%}".format(vote_counter[i]/total_votes))
+    
+winning_votes=max(vote_counter)
+winning_index=vote_counter.index(winning_votes)
+print (candidates[winning_index] + " Wins!")
+
+
+
+
