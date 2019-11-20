@@ -7,6 +7,8 @@ candidates=[]
 vote_counter=[]
 this_index=0
 vote_int=0
+election_results=[]
+results_string=""
 
 with open('election_data.csv', "r") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
@@ -36,30 +38,42 @@ with open('election_data.csv', "r") as csv_file:
             # sets the vote_counter at that same candidate index equal to the vote_int
             vote_counter[candidate_index]=vote_int
         
-        
-
-            
-
            
      
-            
-
-
-print("Total votes: " + str(total_votes))
+        
 print("Candidates voted for include: ")
 print(candidates)
 print("Counties include: ")
 print(counties)
 
+
+
+election_results.append("Election Results")
+election_results.append("--------------------------------------")
+election_results.append("Total votes: " + str(total_votes))
+
+
 print(vote_counter)
 
 length=len(candidates)
 for i in range (0, length):
-    print(candidates[i]+ ": " + str(vote_counter[i])+ "  " + "{:.2%}".format(vote_counter[i]/total_votes))
-    
+    results_string=candidates[i]+ ": " + str(vote_counter[i])+ "  " + "{:.2%}".format(vote_counter[i]/total_votes)
+    election_results.append(results_string)
+
+election_results.append("--------------------------------------")  
 winning_votes=max(vote_counter)
 winning_index=vote_counter.index(winning_votes)
-print (candidates[winning_index] + " Wins!")
+results_string="Winner: " + candidates[winning_index]
+election_results.append(results_string)  
+election_results.append("--------------------------------------") 
+filename="results.txt"
+with open(filename, "w+") as this_file:
+    for i in range(0, len(election_results)):
+        print(election_results[i])
+        this_file.writelines(election_results[i]+ "\n")
+
+
+
 
 
 
