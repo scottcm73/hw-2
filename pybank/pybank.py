@@ -18,7 +18,7 @@ def total_profit_or_loss():
 
 data_folder = Path("pybank/resources/")
 
-file_to_open = data_folder / "budget_data.csv"
+file_to_open = data_folder / "budget_data2.csv"
 
 with open(file_to_open, "r") as this_csv_file:
     this_csv_reader=csv.DictReader(this_csv_file)
