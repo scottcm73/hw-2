@@ -29,13 +29,13 @@ with open('election_data.csv', "r") as csv_file:
             candidates.append(row[2]) 
             vote_counter.append(1)
         else:
-            # Gets the integer of the vote count of the pafticular 
-            # candidate with the same index as the current candidate
+            # Gets the integer of the vote count of the particular 
+            # candidate in the candidates list with the same index as the current candidate
 
             candidate_index=candidates.index(row[2])
             vote_int=vote_counter[candidate_index]
             vote_int=vote_int+1
-            # sets the vote_counter at that same candidate index equal to the vote_int
+            # sets the vote_counter list at that same candidate index equal to the vote_int
             vote_counter[candidate_index]=vote_int
         
            
@@ -47,7 +47,7 @@ print("Counties include: ")
 print(counties)
 
 
-
+#election_results is a list of each line of the results to be printed and writen to a file
 election_results.append("Election Results")
 election_results.append("--------------------------------------")
 election_results.append("Total votes: " + str(total_votes))
