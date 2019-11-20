@@ -19,20 +19,20 @@ with open('election_data.csv', "r") as csv_file:
     for row in csv_reader:
         total_votes += 1
 
-        if row['county'] not in counties:
+        if row['County'] not in counties:
             # Makes a list of only distinct counties
-            counties.append(row['county'])
+            counties.append(row['County'])
         
 
-        if row['candidate'] not in candidates:
+        if row['Candidate'] not in candidates:
             #Makes a list of only distinct candidates voted for
-            candidates.append(row['candidate']) 
+            candidates.append(row['Candidate']) 
             vote_counter.append(1)
         else:
             # Gets the integer of the vote count of the particular 
             # candidate in the candidates list with the same index as the current candidate
 
-            candidate_index=candidates.index(row['candidate'])
+            candidate_index=candidates.index(row['Candidate'])
             vote_int=vote_counter[candidate_index]
             vote_int=vote_int+1
             # sets the vote_counter list at that same candidate index equal to the vote_int
