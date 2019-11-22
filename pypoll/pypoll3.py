@@ -1,86 +1,49 @@
-import csv
+#Python 3.7 object
 
-line_count = 0
-total_votes =0
-counties= []
+vote_tally=0
+vote_tally_by_county=0
+counties=[]
+total_votes=0
 candidates=[]
-vote_counter=[]
-this_index=0
-vote_int=0
-election_results=[]
-results_string=""
+class Vote:
+    total_votes=total_votes+1
 
-with open('election_data.csv', "r") as csv_file:
-    csv_reader = csv.DictReader(csv_file, delimiter=',')
-
-    header=next(csv_reader)
-    print(header)
+    def _init_(self, voter_id, county, vote_for_candidate):
+        self.voter_id=voter_id
+        self.county=county
+        self.vote_for_candidate=vote_for_candidate
     
-    for row in csv_reader:
-        total_votes += 1
-
-        if row['County'] not in counties:
+    def candidate_list(self, this_candidate, candidates):
+        if this_candidate not in candidates:
             # Makes a list of only distinct counties
-            counties.append(row['County'])
+            candidates.append(this_candidate)
+        return
+
+    def county_list(self, this_county, counties):
+        if this_county not in counties:
+            # Makes a list of only distinct counties
+            counties.append(this_county)
+        return
+
+    def running_vote_tally_by_candidate(self):
         
 
-        if row['Candidate'] not in candidates:
-            #Makes a list of only distinct candidates voted for
-            candidates.append(row['Candidate']) 
-            vote_counter.append(1)
-        else:
-            # Gets the integer of the vote count of the particular 
-            # candidate in the candidates list with the same index as the current candidate
-
-            candidate_index=candidates.index(row['Candidate'])
-            vote_int=vote_counter[candidate_index]
-            vote_int=vote_int+1
-            # sets the vote_counter list at that same candidate index equal to the vote_int
-            vote_counter[candidate_index]=vote_int
-        
-           
-#printing before making results into list 
-   
-        
-print("Candidates voted for include: ")
-print(candidates)
-print("Counties include: ")
-print(counties)
-
-
-#election_results is a list of each line of the results to be both printed and writen to a file
-election_results.append("Election Results")
-election_results.append("--------------------------------------")
-election_results.append("Total votes: " + str(total_votes))
-
-
-print(vote_counter)
-
-length=len(candidates)
-
-# Puts results into strings with percentage formated 
-
-for i in range (0, length):
-    results_string=candidates[i]+ ": " + str(vote_counter[i])+ "  " + "{:.2%}".format(vote_counter[i]/total_votes)
-    election_results.append(results_string)
-
-election_results.append("--------------------------------------")  
-winning_votes=max(vote_counter)
-winning_index=vote_counter.index(winning_votes)
-results_string="Winner: " + candidates[winning_index]
-election_results.append(results_string)  
-election_results.append("--------------------------------------") 
-filename="results.txt"
-
-#Writing results to file line by line with end of line character. 
-#It overwrites file if it does not exist. 
-with open(filename, "w+") as this_file:
-    [print election results, this_file.writelines(election_results[i]+ "\n") for i in election_results]
+        return vote_tally
     
+    def running_tally_by_candidate_and_county(self):
         
+        return vote_tally_by_county
+
+
+   
+    
+
+    
 
 
 
+    
+    
 
 
-
+    
