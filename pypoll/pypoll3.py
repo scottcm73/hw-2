@@ -26,7 +26,7 @@ class Vote:
 
         return vote_tally
 
-    def running_tally_by_candidate_and_county(self):
+    def running_tally_by_candidate_and_county(self, candidates, vote_tally_by_county):
         return vote_tally_by_county
 
     
@@ -37,7 +37,7 @@ class Vote:
             candidates.append(this_candidate)
         
         else: 
-            running_vote_tally_by_candidate(candidates, vote_tally)
+            self.running_vote_tally_by_candidate(candidates, vote_tally)
         return candidates
     
     
