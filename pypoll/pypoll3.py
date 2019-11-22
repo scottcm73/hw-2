@@ -61,7 +61,7 @@ length=len(candidates)
 # Puts results into strings with percentage formated 
 
 for i in range (0, length):
-    results_string=candidates[i]+ ": " "{:.2%}".format(vote_counter[i]/total_votes) + " " + str(vote_counter[i])
+    results_string=candidates[i]+ ": " + str(vote_counter[i])+ "  " + "{:.2%}".format(vote_counter[i]/total_votes)
     election_results.append(results_string)
 
 election_results.append("--------------------------------------")  
@@ -75,10 +75,9 @@ filename="results.txt"
 #Writing results to file line by line with end of line character. 
 #It overwrites file if it does not exist. 
 with open(filename, "w+") as this_file:
-    for i in range(0, len(election_results)):
-        print(election_results[i])
-        this_file.writelines(election_results[i]+ "\n")
-
+    [print election results, this_file.writelines(election_results[i]+ "\n") for i in election_results]
+    
+        
 
 
 
