@@ -17,9 +17,9 @@ porl_change_list=[]
 financial_analysis=[]
 
 #Uses Path method of pathlib object to make paths cross platform compatible 
-data_folder = Path("pybank/resources/")
 
-file_to_open = data_folder / "budget_data2.csv"
+
+file_to_open = os.path.join("resources", "budget_data2.csv"
 
 with open(file_to_open, "r") as this_csv_file:
     this_csv_reader=csv.reader(this_csv_file, delimiter=",")
@@ -36,6 +36,9 @@ with open(file_to_open, "r") as this_csv_file:
             porl_change=porl[row_count-1]-porl[previous_row-1]
             porl_change_list.append(porl_change)
         previous_row=row_count
+
+
+
 
         
 
