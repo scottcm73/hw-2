@@ -2,9 +2,11 @@
 import os
 
 
-file_to_open = os.path.join("raw_data", "paragraph_2.txt")
+file_to_open = os.path.join("raw_data", "paragraph_1.txt")
 num_words=0
 num_sentences=0
+
+
 
 with open(file_to_open, "r") as this_file:
     this_text=this_file.read()
